@@ -1,0 +1,14 @@
+.result-text-title{
+  font-size: 1.4rem;
+  color: #ffcd2e;
+  font-weight: bold;
+}
+.result-text-content{
+  font-size: 1.4rem;
+}
+.card-background{
+  background-color: rgb(240, 240, 240);
+}
+body{
+  border: none;
+}

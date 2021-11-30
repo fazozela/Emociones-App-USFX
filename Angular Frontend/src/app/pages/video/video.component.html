@@ -1,0 +1,98 @@
+
+<div class="grid mt-5">
+
+  <div class="col-8">
+
+    <p-card>
+      <div *ngIf="modelsReady" class="flex align-items-center justify-content-center">
+        <video #videoElement [src]="videoPath" id="videoElement" width="500px" height="500px" crossorigin='anonymous'>
+        </video>
+      </div>
+
+      <div class="flex justify-content-center mt-5">
+        <div>
+          <button class="p-button-success mr-3" pButton label="Cargar Video" (click)="reloadPage()" style="padding: 1rem;">
+          </button>
+        </div>
+
+        <div>
+          <button class="p-button-warning" pButton label="Ver emociones" (click)="playVideo()" style="padding: 1rem;">
+          </button>
+        </div>
+      </div>
+    </p-card>
+
+  </div>
+
+
+  <div class="col-4 flex align-items-center flex-column" >
+    <p-card >
+      <h3 style="text-align: center; padding-inline: 2rem;">Porcentaje de emociones</h3>
+      <div class="flex justify-content-center flex-column align-items-center mt-3">
+        <div *ngFor="let items of listExpressions" class="mt-4">
+          <span class="result-text-title">{{ items.name | uppercase }}</span> : <span class="result-text-content">{{
+            items.value | percent }}</span>
+        </div>
+      </div>
+
+      <button pButton class="p-button-info mt-5" label="RESULTADOS" style="width: 100%; padding: 1rem;" (click)="seeResults()"></button>
+    </p-card>
+  </div>
+</div>
+
+<div *ngIf="results" class="grid" style="background-color: white; padding-block: 5rem;">
+
+  <div class="col-2 flex align-items-start flex-column justify-content-center">
+
+    <p-tag>
+        <b>Neutro: </b> {{neutralMean | number : '1.2-2'}} %
+    </p-tag>
+
+    <br>
+
+    <p-tag>
+        <b>Feliz: </b> {{happyMean | number : '1.2-2'}} %
+    </p-tag>
+
+    <br>
+
+    <p-tag>
+        <b>Triste: </b> {{sadMean | number : '1.2-2'}} %
+    </p-tag>
+
+    <br>
+
+    <p-tag>
+        <b>Enojado: </b> {{angryMean | number : '1.2-2'}} %
+    </p-tag>
+
+    <br>
+
+    <p-tag>
+        <b>Asustado: </b> {{fearfulMean | number : '1.2-2'}} %
+    </p-tag>
+
+    <br>
+
+    <p-tag>
+        <b>Disgustado: </b> {{disgustedMean | number : '1.2-2'}} %
+    </p-tag>
+
+    <br>
+
+    <p-tag>
+        <b>Sorprendido: </b> {{surprisedMean | number : '1.2-2'}} %
+    </p-tag>
+
+  </div>
+
+  <div class="col-10 flex justify-content-center">
+    <div class="card card-background" style="width: 100%;">
+      <p-chart class="p-8" type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+    </div>
+  </div>
+
+</div>
+
+
+
